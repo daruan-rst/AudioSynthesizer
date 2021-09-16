@@ -9,7 +9,7 @@ import java.awt.event.ItemEvent;
 import java.util.Random;
 
 
-public class Oscilator extends JPanel {
+public class Oscilator extends SynthControlContainer {
 
     private Waveform waveform = Waveform.SINE;
 
@@ -19,7 +19,8 @@ public class Oscilator extends JPanel {
 
     private int wavePos;
 
-    public Oscilator(){
+    public Oscilator(Synthesizer synth){
+        super(synth);
         JComboBox<Waveform> comboBox = new JComboBox<>(new Waveform[]{Waveform.SINE, Waveform.SQUARE, Waveform.SAW, Waveform.TRIANGLE, Waveform.NOISE});
         comboBox.setSelectedItem(Waveform.SINE);
         comboBox.setBounds(10,10,75,25);
