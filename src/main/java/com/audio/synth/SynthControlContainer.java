@@ -19,6 +19,7 @@ public class SynthControlContainer extends JPanel {
         return on;
     }
 
+    protected Point mouseClickLocation;
 
 
 

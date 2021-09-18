@@ -1,5 +1,6 @@
 package com.audio.synth;
 
+import com.audio.synth.utilities.MathMethods;
 import lombok.Getter;
 
 import javax.swing.*;
@@ -7,10 +8,13 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.HashMap;
 
 public class Synthesizer {
 
     private boolean shouldGenerate;
+
+    private static final HashMap<Character, Double> KEY_FREQUENCIES= new HashMap<>();
 
     private final JFrame frame = new JFrame("Synthesizer");
 
@@ -39,6 +43,9 @@ public class Synthesizer {
         @Override
         public void keyPressed(KeyEvent e) {
             if(!audioThread.isRunning()){
+                for (Oscilator o: oscilators){
+                    //set frequency of o based on the key event
+                }
                 shouldGenerate = true;
                 audioThread.triggerPlayback();
             }
@@ -50,6 +57,17 @@ public class Synthesizer {
             shouldGenerate = false;
         }
     };
+
+    static{
+
+        final int STARTING_KEY = 16;
+        final int KEY_FREQUENCY_INCREMENT = 2;
+        final char[] KEYS = "zxcvbnm,.asdfghjklqwertyuiop[]".toCharArray();
+        for (int i = STARTING_KEY, key = 0 ; i<KEYS.length*KEY_FREQUENCY_INCREMENT +STARTING_KEY; i +=KEY_FREQUENCY_INCREMENT, key++ ){
+            KEY_FREQUENCIES.put(KEYS[key], MathMethods.getKeyFrequency(i));
+        }
+
+    }
 
 
     Synthesizer(){
