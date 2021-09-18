@@ -32,9 +32,9 @@ public class Oscilator extends SynthControlContainer {
     @Getter
     private double frequency;
 
-    public void setFrequency(double frequency){
+    public void setKeyFrequency(double frequency){
         keyFrequency = this.frequency + frequency;
-        //apply tone offset
+        applyToneOffset();
     }
 
     private int wavePos;
@@ -76,15 +76,18 @@ public class Oscilator extends SynthControlContainer {
             public void mouseDragged(MouseEvent e) {
                 if (mouseClickLocation.y != e.getY()){
                     boolean mouseMovingUp = mouseClickLocation.y - e.getYOnScreen() > 0;
+
                     if (mouseMovingUp && toneOffset < TONE_OFFSET_LIMIT){
                         ++toneOffset;
+
                     }else if(!mouseMovingUp && toneOffset > -TONE_OFFSET_LIMIT){
                         --toneOffset;
                     }
-                    //apply tone offset
+                    applyToneOffset();
                     toneParameter.setText("x" + String.format("%.3f",(getToneOffset()/1000d)));
                 }
-                ParameterHandling.PARAMETER_ROBOT.mouseMove(mouseClickLocation.x, mouseClickLocation.y);
+                //ParameterHandling.PARAMETER_ROBOT.mouseMove(mouseClickLocation.x, mouseClickLocation.y);
+                System.out.println(toneOffset);
             }
         });
         add(toneParameter);
@@ -117,6 +120,11 @@ public class Oscilator extends SynthControlContainer {
             default:
                 throw new RuntimeException("Oscilator set to unknown wave form");
         }
+
+    }
+
+    private void applyToneOffset(){
+        frequency = keyFrequency * Math.pow(2, getToneOffset());
 
     }
 }
