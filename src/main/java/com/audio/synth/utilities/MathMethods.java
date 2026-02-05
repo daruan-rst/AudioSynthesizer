@@ -15,7 +15,7 @@ public class MathMethods {
     }
 
     public static double root(double num, double root){
-        return pow(E, log(num)/root);
+        return pow(E, log(num) /root);
     }
 
 }

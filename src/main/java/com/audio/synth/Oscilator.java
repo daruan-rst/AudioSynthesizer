@@ -86,7 +86,7 @@ public class Oscilator extends SynthControlContainer {
                     applyToneOffset();
                     toneParameter.setText("x" + String.format("%.3f",(getToneOffset()/1000d)));
                 }
-                //ParameterHandling.PARAMETER_ROBOT.mouseMove(mouseClickLocation.x, mouseClickLocation.y);
+                ParameterHandling.PARAMETER_ROBOT.mouseMove(mouseClickLocation.x, mouseClickLocation.y);
                 System.out.println(toneOffset);
             }
         });
@@ -112,9 +112,9 @@ public class Oscilator extends SynthControlContainer {
             case SQUARE:
                 return Math.signum(Math.sin(MathMethods.frequencyToAngular(frequency) * (wavePos-1) / AudioInfo.SAMPLE_RATE));
             case SAW:
-                return 2d* (tDivP - Math.floor(0.5 + tDivP));
+                return 2d * (tDivP - Math.floor(0.5 + tDivP));
             case TRIANGLE:
-                return 2d* Math.abs((tDivP - Math.floor(0.5 + tDivP))) - 1;
+                return 2d * Math.abs((tDivP - Math.floor(0.5 + tDivP))) - 1;
             case NOISE:
                 return random.nextDouble();
             default:

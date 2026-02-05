@@ -29,7 +29,7 @@ public class Synthesizer {
         for (int i= 0 ; i<AudioThread.BUFFER_SIZE ; i++){
             double d = 0;
             for (Oscilator o : oscilators){
-                d+= o.nextSample()/ oscilators.length;
+                d+= o.nextSample() / oscilators.length;
             }
             s[i] = (short)(Short.MAX_VALUE * d);
         }
@@ -62,10 +62,12 @@ public class Synthesizer {
 
         final int STARTING_KEY = 16;
         final int KEY_FREQUENCY_INCREMENT = 2;
-        final char[] KEYS = "zxcvbnm,.asdfghjklqwertyuiop[]".toCharArray();
-        for (int i = STARTING_KEY, key = 0 ; i<KEYS.length*KEY_FREQUENCY_INCREMENT +STARTING_KEY; i +=KEY_FREQUENCY_INCREMENT, key++ ){
+        final char[] KEYS = "zxcvbnm,.asdfghjkl;'#qwertyuiop[]".toCharArray();
+        for (int i = STARTING_KEY, key = 0 ; i < KEYS.length * KEY_FREQUENCY_INCREMENT + STARTING_KEY; i += KEY_FREQUENCY_INCREMENT, key++ ){
             KEY_FREQUENCIES.put(KEYS[key], MathMethods.getKeyFrequency(i));
         }
+
+
 
     }
 

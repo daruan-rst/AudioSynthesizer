@@ -10,13 +10,15 @@ public class SynthControlContainer extends JPanel {
 
     private Synthesizer synth;
 
-
-    @Setter
     protected boolean on;
 
 
     protected boolean isOn(){
         return on;
+    }
+
+    protected void turnOn(){
+        this.on = true;
     }
 
     protected Point mouseClickLocation;
