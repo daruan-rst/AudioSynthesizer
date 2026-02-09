@@ -105,7 +105,6 @@ public class Oscilator extends SynthControlContainer {
     }
 
     private void applyToneOffset(){
-        wavetableStepSize = (int) (Wavetable.SIZE * (keyFrequency * Math.pow(2, getToneOffset()))/ AudioInfo.SAMPLE_RATE);
-
+        wavetableStepSize = (int)(Wavetable.SIZE * (MathMethods.offsetTone(keyFrequency, getToneOffset())) / AudioInfo.SAMPLE_RATE);
     }
 }

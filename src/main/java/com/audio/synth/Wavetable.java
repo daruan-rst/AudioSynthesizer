@@ -15,12 +15,13 @@ enum Wavetable {
 
         final double FUND_FREQ = 1d / ( SIZE / (double) AudioInfo.SAMPLE_RATE);
         for (int i = 0; i < SIZE; i++) {
-            double t =  1 / (double) AudioInfo.SAMPLE_RATE;
-            double tDivP = t / (1d / FUND_FREQ );
+            double t = i / (double)AudioInfo.SAMPLE_RATE;
+            double tDivP = t / (1d / FUND_FREQ);
             SINE.samples[i] = (float) Math.sin(MathMethods.frequencyToAngular(FUND_FREQ) * t);
             SQUARE.samples[i] = (float) Math.signum(SINE.samples[i]);
-            SAW.samples[i] = (float) (2d * (tDivP - Math.floor(0.5 + tDivP)));
-            TRIANGLE.samples[i] = (float) (2d * Math.abs(SAW.samples[i]) - 1d);
+            SAW.samples[i] = (float)(2d * (tDivP - Math.floor(0.5 + tDivP)));
+            TRIANGLE.samples[i] = (float)(2d * Math.abs(SAW.samples[i]) - 1d);
+            System.out.println(SAW.samples[i]);
         }
     }
 

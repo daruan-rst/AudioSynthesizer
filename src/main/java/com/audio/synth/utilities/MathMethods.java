@@ -18,6 +18,10 @@ public class MathMethods {
         return pow(E, log(num) /root);
     }
 
+    public static double offsetTone(double baseFrequency, double frequencyMultiplier) {
+        return baseFrequency * pow(2.0, frequencyMultiplier);
+    }
+
 }
 
 
